@@ -51,12 +51,12 @@ body {
   background-color: #f1f1f1;
 }
 
-.container {
+/* .container {
   max-width: 1260px;
   width: 100%;
   margin: 0 auto;
   padding: 0 30px;
-}
+} */
 
 ._hover01:hover {
   background-color: #33399b;
@@ -721,12 +721,12 @@ body {
   display: none;
 }
 
-.header {
+/* .header {
   width: 100%;
   margin: 0 auto;
   background-color: #ffffff;
-}
-.header__block {
+} */
+/* .header__block {
   height: 70px;
   display: flex;
   flex-wrap: nowrap;
@@ -736,7 +736,7 @@ body {
   top: 0;
   left: 0;
   padding: 0 10px;
-}
+} */
 .header__logo img {
   width: 85px;
 }
