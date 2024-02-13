@@ -12,45 +12,36 @@ function Header({ addCard }) {
     <S.StyledHeader>
       <Container>
         <S.HeaderBlock>
-          <div className="header__logo _show _light">
+          <S.HeaderLogo>
             <a href="" target="_self">
               <img src="./public/logo.png" alt="logo" />
             </a>
-          </div>
-          <div className="header__logo _dark">
+          </S.HeaderLogo>
+          <S.HeaderLogo>
             <a href="" target="_self">
               <img src="./public/logo_dark.png" alt="logo" />
             </a>
-          </div>
-          <nav className="header__nav">
-            <button
-              onClick={addCard}
-              className="header__btn-main-new _hover01"
-              id="btnMainNew"
-            >
+          </S.HeaderLogo>
+          <S.HeaderNav>
+            <S.ButtonNewMain onClick={addCard}>
               Создать новую задачу
-            </button>
-            <div onClick={togglePopup} className="header__user _hover02">
-              Ivan Ivanov
-            </div>
+            </S.ButtonNewMain>
+            <S.HeaderUser onClick={togglePopup}>Ivan Ivanov</S.HeaderUser>
             {isOpened && (
-              <div
-                className="header__pop-user-set pop-user-set"
-                id="user-set-target"
-              >
+              <S.UserSetTarget>
                 {/* <a href="">x</a> */}
-                <p className="pop-user-set__name">Ivan Ivanov</p>
-                <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
-                <div className="pop-user-set__theme">
+                <S.PopUserSetName>Ivan Ivanov</S.PopUserSetName>
+                <S.PopUserSetMail>ivan.ivanov@gmail.com</S.PopUserSetMail>
+                <S.PopUserSetTheme>
                   <p>Темная тема</p>
                   <input type="checkbox" className="checkbox" name="checkbox" />
-                </div>
-                <button type="button" className="_hover03">
+                </S.PopUserSetTheme>
+                <S.PopExitButton>
                   <a href="#popExit">Выйти</a>
-                </button>
-              </div>
+                </S.PopExitButton>
+              </S.UserSetTarget>
             )}
-          </nav>
+          </S.HeaderNav>
         </S.HeaderBlock>
       </Container>
     </S.StyledHeader>
