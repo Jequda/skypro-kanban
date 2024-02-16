@@ -1,12 +1,13 @@
 import CardsItem from "../Cards/CardsItem/CardsItem";
+import * as S from "./Column.styled";
 
 function Column({ title, cardList }) {
   return (
-    <div className="main__column column">
-      <div className="column__title">
+    <S.MainColumn>
+      <S.ColumnTitle>
         <p>{title}</p>
-      </div>
-      <div className="cards">
+      </S.ColumnTitle>
+      <S.Cards>
         {cardList.map((card) => (
           <CardsItem
             topic={card.theme}
@@ -15,8 +16,8 @@ function Column({ title, cardList }) {
             key={card.id}
           />
         ))}
-      </div>
-    </div>
+      </S.Cards>
+    </S.MainColumn>
   );
 }
 
