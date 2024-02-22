@@ -38,7 +38,7 @@ export const HoverEffects = {
     background-color: #33399b;
     color: #ffffff;
     }
-    &hover a {
+    &:hover a {
     color: #ffffff;
     }
   `,
