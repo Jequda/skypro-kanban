@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { appRoutes } from "../../lib/appRoutes";
 
-export default function Register(login) {
+export default function Register({ login }) {
   return (
     <div className="wrapper">
       <div className="container-signup">
@@ -33,10 +33,11 @@ export default function Register(login) {
                 placeholder="Пароль"
               />
               <button
+                onClick={login}
                 className="modal__btn-signup-ent _hover01"
                 id="SignUpEnter"
               >
-                <span onClick={() => login}>Зарегистрироваться</span>{" "}
+                <span>Зарегистрироваться</span>{" "}
               </button>
               <div className="modal__form-group">
                 <p>

@@ -14,12 +14,14 @@ export default function App() {
   const [user, setUser] = useState(true);
   const navigate = useNavigate();
 
-  function login() {
+  function login(evt) {
     setUser(true);
+    evt.preventDefault();
     navigate(appRoutes.MAIN);
   }
-  function logout() {
+  function logout(evt) {
     setUser(false);
+    evt.preventDefault();
     navigate(appRoutes.LOGIN);
   }
 

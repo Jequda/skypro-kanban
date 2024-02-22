@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { appRoutes } from "../../lib/appRoutes";
 
-export default function Login(login) {
+export default function Login({ login }) {
   return (
     <div className="wrapper">
       <div className="container-signin">
@@ -26,11 +26,11 @@ export default function Login(login) {
                 placeholder="Пароль"
               />
               <button
-                onClick={() => login}
+                onClick={login}
                 className="modal__btn-enter _hover01"
                 id="btnEnter"
               >
-                Войти
+                <span>Войти</span>{" "}
               </button>
               <div className="modal__form-group">
                 <p>Нужно зарегистрироваться?</p>
