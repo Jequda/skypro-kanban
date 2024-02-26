@@ -1,4 +1,8 @@
-function PopExit() {
+import { Link } from "react-router-dom";
+import { appRoutes } from "../../../lib/appRoutes";
+import { StyledButtonNo } from "../../../styled/common/Common.styled";
+
+export default function PopExit({ logout }) {
   return (
     <div className="pop-exit" id="popExit">
       <div className="pop-exit__container">
@@ -6,14 +10,20 @@ function PopExit() {
           <div className="pop-exit__ttl">
             <h2>Выйти из аккаунта?</h2>
           </div>
-          <form className="pop-exit__form" id="formExit" action="#">
+          <form className="pop-exit__form" id="formExit">
             <div className="pop-exit__form-group">
-              <button className="pop-exit__exit-yes _hover01" id="exitYes">
-                <a href="modal/signin.html">Да, выйти</a>{" "}
-              </button>
-              <button className="pop-exit__exit-no _hover03" id="exitNo">
-                <a href="main.html">Нет, остаться</a>{" "}
-              </button>
+              <Link to={appRoutes.LOGIN}>
+                <button
+                  onClick={logout}
+                  className="pop-exit__exit-yes _hover01"
+                  id="exitYes"
+                >
+                  <span>Да, выйти</span>{" "}
+                </button>
+              </Link>
+              <Link to={appRoutes.MAIN}>
+                <StyledButtonNo>Нет, остаться </StyledButtonNo>
+              </Link>
             </div>
           </form>
         </div>
@@ -21,5 +31,3 @@ function PopExit() {
     </div>
   );
 }
-
-export default PopExit;
