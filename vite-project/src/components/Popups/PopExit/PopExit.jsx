@@ -12,15 +12,13 @@ export default function PopExit({ logout }) {
           </div>
           <form className="pop-exit__form" id="formExit">
             <div className="pop-exit__form-group">
-              <Link to={appRoutes.LOGIN}>
-                <button
-                  onClick={logout}
-                  className="pop-exit__exit-yes _hover01"
-                  id="exitYes"
-                >
-                  <span>Да, выйти</span>{" "}
-                </button>
-              </Link>
+              <button
+                onClick={logout}
+                className="pop-exit__exit-yes _hover01"
+                id="exitYes"
+              >
+                <span>Да, выйти</span>{" "}
+              </button>
               <Link to={appRoutes.MAIN}>
                 <StyledButtonNo>Нет, остаться </StyledButtonNo>
               </Link>

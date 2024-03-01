@@ -1,7 +1,36 @@
 import { Link } from "react-router-dom";
 import { appRoutes } from "../../lib/appRoutes";
+import { useState } from "react";
+import { SignUp } from "../../api";
 
 export default function Register({ login }) {
+  const [registerData, setRegisterData] = useState({
+    name: "",
+    login: "",
+    password: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target; // Извлекаем имя поля и его значение
+
+    setRegisterData({
+      ...registerData, // Копируем текущие данные из состояния
+      [name]: value, // Обновляем нужное поле
+    });
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    await SignUp(registerData)
+      .then((data) => {
+        login(data.user);
+        console.log(data.user);
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
+
   return (
     <div className="wrapper">
       <div className="container-signup">
@@ -12,13 +41,17 @@ export default function Register({ login }) {
             </div>
             <form className="modal__form-login" id="formLogUp" action="#">
               <input
+                value={registerData.name}
+                onChange={handleInputChange}
                 className="modal__input first-name"
                 type="text"
-                name="first-name"
-                id="first-name"
+                name="name"
+                id="name"
                 placeholder="Имя"
               />
               <input
+                value={registerData.login}
+                onChange={handleInputChange}
                 className="modal__input login"
                 type="text"
                 name="login"
@@ -26,6 +59,8 @@ export default function Register({ login }) {
                 placeholder="Эл. почта"
               />
               <input
+                value={registerData.password}
+                onChange={handleInputChange}
                 className="modal__input password-first"
                 type="password"
                 name="password"
@@ -33,7 +68,7 @@ export default function Register({ login }) {
                 placeholder="Пароль"
               />
               <button
-                onClick={login}
+                onClick={handleRegister}
                 className="modal__btn-signup-ent _hover01"
                 id="SignUpEnter"
               >
