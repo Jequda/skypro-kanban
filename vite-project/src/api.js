@@ -17,19 +17,23 @@ export async function getTodos({ token }) {
 }
 
 
-export async function postTodo({ text, token }) {
+export async function postTodo({ token, title, description, topic, date, status }) {
     const response = await fetch(baseHost, {
         headers: {
             Authorization: `Bearer ${token}`,
         },
         method: "POST",
         body: JSON.stringify({
-            text,
+            title,
+            description,
+            topic,
+            date,
+            status,
         }),
     });
 
     if (!response.ok) {
-        throw new Error("Ошибка сервера");
+        throw new Error("Пожалуйста, заполните все поля");
     }
 
     const data = await response.json();

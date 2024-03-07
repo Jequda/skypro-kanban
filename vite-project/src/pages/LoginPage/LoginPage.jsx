@@ -1,9 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { appRoutes } from "../../lib/appRoutes";
 import { useState } from "react";
 import { SignIn } from "../../api";
+import { useUser } from "../../hooks/useUser";
+import * as S from "./LoginPage.styled";
 
-export default function Login({ login }) {
+export default function Login() {
+  const { login } = useUser();
+  const navigate = useNavigate();
+
   const [loginData, setLoginData] = useState({ login: "", password: "" });
 
   const handleInputChange = (e) => {
@@ -20,6 +25,7 @@ export default function Login({ login }) {
     await SignIn(loginData)
       .then((data) => {
         login(data.user);
+        navigate(appRoutes.MAIN);
       })
       .catch((error) => {
         alert(error);
@@ -27,49 +33,35 @@ export default function Login({ login }) {
   };
 
   return (
-    <div className="wrapper">
-      <div className="container-signin">
-        <div className="modal">
-          <div className="modal__block">
-            <div className="modal__ttl">
-              <h2>Вход</h2>
-            </div>
-            <form className="modal__form-login" id="formLogIn" action="#">
-              <input
+    <S.Wrapper>
+      <S.ContainerSignin>
+        <S.Modal>
+          <S.ModalBlock>
+            <S.ModalTitle>Вход</S.ModalTitle>
+            <S.ModalFormLogin>
+              <S.ModalInput
                 value={loginData.login}
                 onChange={handleInputChange}
-                className="modal__input"
                 type="text"
                 name="login"
-                id="formlogin"
                 placeholder="Эл. почта"
               />
-              <input
+              <S.ModalInput
                 value={loginData.password}
                 onChange={handleInputChange}
-                className="modal__input"
                 type="password"
                 name="password"
-                id="formpassword"
                 placeholder="Пароль"
               />
-              <button
-                onClick={handleLogin}
-                className="modal__btn-enter _hover01"
-                id="btnEnter"
-              >
-                <span>Войти</span>{" "}
-              </button>
-              <div className="modal__form-group">
-                <p>Нужно зарегистрироваться?</p>
-                <Link to={appRoutes.REGISTER}>
-                  <span>Регистрируйтесь здесь</span>
-                </Link>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+              <S.ModalButton onClick={handleLogin}>Войти</S.ModalButton>
+              <S.ModalFormGroup>
+                Нужно зарегистрироваться?
+                <Link to={appRoutes.REGISTER}>Регистрируйтесь здесь</Link>
+              </S.ModalFormGroup>
+            </S.ModalFormLogin>
+          </S.ModalBlock>
+        </S.Modal>
+      </S.ContainerSignin>
+    </S.Wrapper>
   );
 }
