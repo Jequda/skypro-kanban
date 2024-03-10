@@ -3,9 +3,11 @@ import * as S from "./Header.styled";
 import { Container } from "../../styled/common/Common.styled";
 import { Link } from "react-router-dom";
 import { appRoutes } from "../../lib/appRoutes";
+import { useUser } from "../../hooks/useUser";
 
-function Header({ addCard }) {
+function Header() {
   const [isOpened, setIsOpened] = useState(false);
+  const { user } = useUser();
   function togglePopup() {
     setIsOpened((prev) => !prev);
   }
@@ -19,28 +21,26 @@ function Header({ addCard }) {
               <img src="./public/logo.png" alt="logo" />
             </a>
           </S.HeaderLogo>
-          <S.HeaderLogo>
+          {/* <S.HeaderLogo>
             <a href="" target="_self">
               <img src="./public/logo_dark.png" alt="logo" />
             </a>
-          </S.HeaderLogo>
+          </S.HeaderLogo> */}
           <S.HeaderNav>
-            <S.ButtonNewMain onClick={addCard}>
-              Создать новую задачу
-            </S.ButtonNewMain>
-            <S.HeaderUser onClick={togglePopup}>Ivan Ivanov</S.HeaderUser>
+            <Link to={appRoutes.NEWTASK}>
+              <S.ButtonNewMain>Создать новую задачу</S.ButtonNewMain>
+            </Link>
+            <S.HeaderUser onClick={togglePopup}>{user.name}</S.HeaderUser>
             {isOpened && (
               <S.UserSetTarget>
-                <S.PopUserSetName>Ivan Ivanov</S.PopUserSetName>
-                <S.PopUserSetMail>ivan.ivanov@gmail.com</S.PopUserSetMail>
+                <S.PopUserSetName>{user.name}</S.PopUserSetName>
+                <S.PopUserSetMail>{user.login}</S.PopUserSetMail>
                 <S.PopUserSetTheme>
                   <p>Темная тема</p>
                   <input type="checkbox" className="checkbox" name="checkbox" />
                 </S.PopUserSetTheme>
                 <Link to={appRoutes.EXIT}>
-                  <S.PopExitButton>
-                    <a href="#popExit">Выйти</a>
-                  </S.PopExitButton>
+                  <S.PopExitButton>Выйти</S.PopExitButton>
                 </Link>
               </S.UserSetTarget>
             )}

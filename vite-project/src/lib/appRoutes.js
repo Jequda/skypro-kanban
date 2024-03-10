@@ -4,5 +4,6 @@ export const appRoutes = {
     LOGIN: "/login",
     REGISTER: "/register",
     EXIT: "/exit",
-    NOT_FOUND: "*"
+    NOT_FOUND: "*",
+    NEWTASK: "/newtask"
 }

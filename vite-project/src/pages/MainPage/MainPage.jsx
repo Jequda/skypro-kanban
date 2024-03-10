@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import { MainContent } from "../../components/MainContent/MainContent.styled";
-import { format } from "date-fns";
 import Column from "../../components/Column/Column";
 import { Outlet } from "react-router-dom";
 import { getTodos } from "../../api";
+import { useUser } from "../../hooks/useUser";
+import { useTasks } from "../../hooks/useCards";
 
 const statusList = [
   "Без статуса",
@@ -14,9 +15,10 @@ const statusList = [
   "Готово",
 ];
 
-export default function MainPage({ user }) {
-  const [cards, setCards] = useState([]);
+export default function MainPage() {
+  const { cards, setCards } = useTasks();
   const [isLoading, setIsLoading] = useState(true);
+  const { user } = useUser();
 
   useEffect(() => {
     getTodos({ token: user.token })
@@ -27,23 +29,13 @@ export default function MainPage({ user }) {
       .catch((error) => {
         alert(error);
       });
-  }, [user]);
+  }, [user, setCards]);
 
-  function addCard() {
-    const newCard = {
-      id: cards.length + 1,
-      theme: "Web Design",
-      title: "Название задачи",
-      date: format(new Date(), "dd.MM.yy"),
-      status: "Без статуса",
-    };
-    setCards([...cards, newCard]);
-  }
   return (
     <>
       <div className="wrapper">
         <Outlet />
-        <Header addCard={addCard} />
+        <Header />
         {isLoading ? (
           <img src="./public/loading.gif" alt="Loading" />
         ) : (

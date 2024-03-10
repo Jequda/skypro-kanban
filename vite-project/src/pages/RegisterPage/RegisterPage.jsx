@@ -1,9 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { appRoutes } from "../../lib/appRoutes";
 import { useState } from "react";
 import { SignUp } from "../../api";
+import { useUser } from "../../hooks/useUser";
+import * as S from "./RegisterPage.styled";
 
-export default function Register({ login }) {
+export default function Register() {
+  const { login } = useUser();
+  const navigate = useNavigate();
+
   const [registerData, setRegisterData] = useState({
     name: "",
     login: "",
@@ -24,7 +29,7 @@ export default function Register({ login }) {
     await SignUp(registerData)
       .then((data) => {
         login(data.user);
-        console.log(data.user);
+        navigate(appRoutes.MAIN);
       })
       .catch((error) => {
         alert(error);
@@ -32,60 +37,44 @@ export default function Register({ login }) {
   };
 
   return (
-    <div className="wrapper">
-      <div className="container-signup">
-        <div className="modal">
-          <div className="modal__block">
-            <div className="modal__ttl">
-              <h2>Регистрация</h2>
-            </div>
-            <form className="modal__form-login" id="formLogUp" action="#">
-              <input
+    <S.Wrapper>
+      <S.ContainerSignup>
+        <S.Modal>
+          <S.ModalBlock>
+            <S.ModalTitle>Регистрация</S.ModalTitle>
+            <S.ModalFormLogin>
+              <S.ModalInput
                 value={registerData.name}
                 onChange={handleInputChange}
-                className="modal__input first-name"
                 type="text"
                 name="name"
-                id="name"
                 placeholder="Имя"
               />
-              <input
+              <S.ModalInput
                 value={registerData.login}
                 onChange={handleInputChange}
-                className="modal__input login"
                 type="text"
                 name="login"
-                id="loginReg"
                 placeholder="Эл. почта"
               />
-              <input
+              <S.ModalInput
                 value={registerData.password}
                 onChange={handleInputChange}
-                className="modal__input password-first"
                 type="password"
                 name="password"
-                id="passwordFirst"
                 placeholder="Пароль"
               />
-              <button
-                onClick={handleRegister}
-                className="modal__btn-signup-ent _hover01"
-                id="SignUpEnter"
-              >
-                <span>Зарегистрироваться</span>{" "}
-              </button>
-              <div className="modal__form-group">
-                <p>
-                  Уже есть аккаунт?
-                  <Link to={appRoutes.LOGIN}>
-                    <span>Войдите здесь</span>
-                  </Link>
-                </p>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+              <S.ModalButton onClick={handleRegister}>
+                Зарегистрироваться
+              </S.ModalButton>
+              <S.ModalFormGroup>
+                Уже есть аккаунт?
+                <Link to={appRoutes.LOGIN}> Войдите здесь</Link>
+              </S.ModalFormGroup>
+            </S.ModalFormLogin>
+          </S.ModalBlock>
+        </S.Modal>
+      </S.ContainerSignup>
+    </S.Wrapper>
   );
 }
