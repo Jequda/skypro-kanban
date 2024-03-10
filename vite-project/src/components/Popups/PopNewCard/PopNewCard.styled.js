@@ -176,18 +176,7 @@ export const CreateButton = styled.button`
   }
 `
 export const RadioToolbarLabel = styled.label`
-    /* display: inline-block;
-    padding: 2px 9px;
-    cursor: pointer;
-    border: 1px solid #DAD0FF;
-
-    &:hover {
-    background-color: #d0ffb7;
-    border: 1px solid #1CA92E;
-} */
-
-/*  */
-display: inline-block;
+  display: inline-block;
   width: auto;
   height: 30px;
   padding: 8px 20px;

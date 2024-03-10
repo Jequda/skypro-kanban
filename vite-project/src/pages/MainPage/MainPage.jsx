@@ -6,6 +6,10 @@ import { Outlet } from "react-router-dom";
 import { getTodos } from "../../api";
 import { useUser } from "../../hooks/useUser";
 import { useTasks } from "../../hooks/useCards";
+import { useDarkMode } from "../../hooks/useDarkMode";
+import { darkTheme, lightTheme } from "../../lib/themes";
+import { ThemeProvider } from "styled-components";
+import { GlobalStyle } from "../../styled/Common/Global.styled";
 
 const statusList = [
   "Без статуса",
@@ -19,6 +23,8 @@ export default function MainPage() {
   const { cards, setCards } = useTasks();
   const [isLoading, setIsLoading] = useState(true);
   const { user } = useUser();
+  const [theme] = useDarkMode();
+  const themeMode = theme === "light" ? lightTheme : darkTheme;
 
   useEffect(() => {
     getTodos({ token: user.token })
@@ -33,23 +39,26 @@ export default function MainPage() {
 
   return (
     <>
-      <div className="wrapper">
-        <Outlet />
-        <Header />
-        {isLoading ? (
-          <img src="./public/loading.gif" alt="Loading" />
-        ) : (
-          <MainContent>
-            {statusList.map((status) => (
-              <Column
-                title={status}
-                key={status}
-                cardList={cards.filter((card) => card.status === status)}
-              />
-            ))}
-          </MainContent>
-        )}
-      </div>
+      <ThemeProvider theme={themeMode}>
+        <GlobalStyle />
+        <div className="wrapper">
+          <Outlet />
+          <Header />
+          {isLoading ? (
+            <img src="./public/loading.gif" alt="Loading" />
+          ) : (
+            <MainContent>
+              {statusList.map((status) => (
+                <Column
+                  title={status}
+                  key={status}
+                  cardList={cards.filter((card) => card.status === status)}
+                />
+              ))}
+            </MainContent>
+          )}
+        </div>
+      </ThemeProvider>
     </>
   );
 }

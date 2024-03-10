@@ -40,14 +40,18 @@ export async function postTodo({ token, title, description, topic, date, status 
     return data;
 }
 
-export async function PutTodo({ text, id, token }) {
+export async function PutTodo({ id, token, title, description, topic, date, status }) {
     const response = await fetch(baseHost + `/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`,
         },
         method: "PUT",
         body: JSON.stringify({
-            text,
+            title,
+            description,
+            topic,
+            date,
+            status,
         }),
     });
 
@@ -59,15 +63,12 @@ export async function PutTodo({ text, id, token }) {
     return data;
 }
 
-export async function deleteTodo({ text, id, token }) {
+export async function deleteTodo({ id, token }) {
     const response = await fetch(baseHost + `/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`,
         },
         method: "DELETE",
-        body: JSON.stringify({
-            text,
-        }),
     });
 
     if (!response.ok) {

@@ -104,7 +104,10 @@ function PopNewCard() {
                   value="Web Design"
                   onChange={handleInputChange}
                 />
-                <S.RadioToolbarLabel htmlFor="WebDesign">
+                <S.RadioToolbarLabel
+                  htmlFor="WebDesign"
+                  $themeColor={topicHeader["Web Design"]}
+                >
                   Web Design
                 </S.RadioToolbarLabel>
 
@@ -115,7 +118,10 @@ function PopNewCard() {
                   value="Research"
                   onChange={handleInputChange}
                 />
-                <S.RadioToolbarLabel htmlFor="Research">
+                <S.RadioToolbarLabel
+                  htmlFor="Research"
+                  $themeColor={topicHeader["Research"]}
+                >
                   Research
                 </S.RadioToolbarLabel>
 
@@ -125,9 +131,11 @@ function PopNewCard() {
                   name="topic"
                   value="Copywriting"
                   onChange={handleInputChange}
-                  $themeColor={topicHeader["Copywriting"]}
                 />
-                <S.RadioToolbarLabel htmlFor="Copywriting">
+                <S.RadioToolbarLabel
+                  htmlFor="Copywriting"
+                  $themeColor={topicHeader["Copywriting"]}
+                >
                   Copywriting
                 </S.RadioToolbarLabel>
               </S.PopCategoriesThemes>

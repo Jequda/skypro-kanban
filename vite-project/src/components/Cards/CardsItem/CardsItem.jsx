@@ -10,18 +10,16 @@ function CardsItem({ topic, title, date, id }) {
           <S.CardTopic $themeColor={topicHeader[topic]}>
             <S.TopicText>{topic}</S.TopicText>
           </S.CardTopic>
-          <a href="#popBrowse" target="_self">
+          <Link to={`task/${id}`}>
             <S.CardBtn>
               <div />
               <div />
               <div />
             </S.CardBtn>
-          </a>
+          </Link>
         </S.CardGroup>
         <S.CardContent>
-          <Link to={`task/${id}`}>
-            <S.CardTitle>{title}</S.CardTitle>
-          </Link>
+          <S.CardTitle>{title}</S.CardTitle>
           <S.CardDate>
             <svg
               xmlns="http://www.w3.org/2000/svg"
