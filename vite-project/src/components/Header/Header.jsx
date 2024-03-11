@@ -9,15 +9,20 @@ import { useThemes } from "../../hooks/useThemes";
 import { ThemeProvider } from "styled-components";
 
 function Header() {
-  const { theme, setTheme, mountedComponent, setMountedComponent, themeMode } =
-    useThemes();
+  const {
+    theme,
+    mountedComponent,
+    setMountedComponent,
+    themeMode,
+    themeToggler,
+  } = useThemes();
   const [isOpened, setIsOpened] = useState(false);
   const { user } = useUser();
   function togglePopup() {
     setIsOpened((prev) => !prev);
   }
   function toggleTheme() {
-    theme === "light" ? setTheme("dark") : setTheme("light");
+    themeToggler();
     setMountedComponent(true);
   }
 
