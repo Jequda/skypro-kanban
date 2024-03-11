@@ -5,14 +5,12 @@ import { Link } from "react-router-dom";
 import { appRoutes } from "../../lib/appRoutes";
 import { useUser } from "../../hooks/useUser";
 import { GlobalStyle } from "../../styled/Common/Global.styled";
+import { useThemes } from "../../hooks/useThemes";
 import { ThemeProvider } from "styled-components";
-import { darkTheme, lightTheme } from "../../lib/themes";
-import { useDarkMode } from "../../hooks/useDarkMode";
 
 function Header() {
-  const [theme, setTheme, mountedComponent, setMountedComponent] =
-    useDarkMode();
-  const themeMode = theme === "light" ? lightTheme : darkTheme;
+  const { theme, setTheme, mountedComponent, setMountedComponent, themeMode } =
+    useThemes();
   const [isOpened, setIsOpened] = useState(false);
   const { user } = useUser();
   function togglePopup() {

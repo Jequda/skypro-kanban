@@ -74,7 +74,7 @@ export const HeaderUser = styled.div`
   justify-content: center;
   font-size: 14px;
   line-height: 20px;
-  color: ${props => props.theme.text};
+  color: ${props => props.theme.button};
 
   &:after {
   content: "";
@@ -82,8 +82,8 @@ export const HeaderUser = styled.div`
   width: 6px;
   height: 6px;
   border-radius: 1px;
-  border-left: 1.9px solid #565eef;
-  border-bottom: 1.9px solid #565eef;
+  border-left: 1.9px solid ${props => props.theme.button};;
+  border-bottom: 1.9px solid ${props => props.theme.button};;
   transform: rotate(-45deg);
   margin: -6px 0 0 5px;
   padding: 0;
@@ -118,7 +118,7 @@ export const PopExitButton = styled.button`
   width: 72px;
   height: 30px;
   background: transparent;
-  color: ${props => props.theme.text};
+  color: ${props => props.theme.button};
   border-radius: 4px;
   border: 1px solid ${props => props.theme.border};
 

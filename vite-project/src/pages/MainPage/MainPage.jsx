@@ -6,10 +6,10 @@ import { Outlet } from "react-router-dom";
 import { getTodos } from "../../api";
 import { useUser } from "../../hooks/useUser";
 import { useTasks } from "../../hooks/useCards";
-import { useDarkMode } from "../../hooks/useDarkMode";
-import { darkTheme, lightTheme } from "../../lib/themes";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "../../styled/Common/Global.styled";
+import { useThemes } from "../../hooks/useThemes";
+import { ThemesProvider } from "../../contexts/theme";
 
 const statusList = [
   "Без статуса",
@@ -23,8 +23,7 @@ export default function MainPage() {
   const { cards, setCards } = useTasks();
   const [isLoading, setIsLoading] = useState(true);
   const { user } = useUser();
-  const [theme] = useDarkMode();
-  const themeMode = theme === "light" ? lightTheme : darkTheme;
+  const { themeMode } = useThemes();
 
   useEffect(() => {
     getTodos({ token: user.token })

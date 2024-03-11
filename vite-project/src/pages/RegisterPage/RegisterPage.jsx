@@ -4,10 +4,14 @@ import { useState } from "react";
 import { SignUp } from "../../api";
 import { useUser } from "../../hooks/useUser";
 import * as S from "./RegisterPage.styled";
+import { useThemes } from "../../hooks/useThemes";
+import { ThemeProvider } from "styled-components";
+import { GlobalStyle } from "../../styled/Common/Global.styled";
 
 export default function Register() {
   const { login } = useUser();
   const navigate = useNavigate();
+  const { themeMode } = useThemes();
 
   const [registerData, setRegisterData] = useState({
     name: "",
@@ -37,44 +41,47 @@ export default function Register() {
   };
 
   return (
-    <S.Wrapper>
-      <S.ContainerSignup>
-        <S.Modal>
-          <S.ModalBlock>
-            <S.ModalTitle>Регистрация</S.ModalTitle>
-            <S.ModalFormLogin>
-              <S.ModalInput
-                value={registerData.name}
-                onChange={handleInputChange}
-                type="text"
-                name="name"
-                placeholder="Имя"
-              />
-              <S.ModalInput
-                value={registerData.login}
-                onChange={handleInputChange}
-                type="text"
-                name="login"
-                placeholder="Эл. почта"
-              />
-              <S.ModalInput
-                value={registerData.password}
-                onChange={handleInputChange}
-                type="password"
-                name="password"
-                placeholder="Пароль"
-              />
-              <S.ModalButton onClick={handleRegister}>
-                Зарегистрироваться
-              </S.ModalButton>
-              <S.ModalFormGroup>
-                Уже есть аккаунт?
-                <Link to={appRoutes.LOGIN}> Войдите здесь</Link>
-              </S.ModalFormGroup>
-            </S.ModalFormLogin>
-          </S.ModalBlock>
-        </S.Modal>
-      </S.ContainerSignup>
-    </S.Wrapper>
+    <ThemeProvider theme={themeMode}>
+      <GlobalStyle />
+      <S.Wrapper>
+        <S.ContainerSignup>
+          <S.Modal>
+            <S.ModalBlock>
+              <S.ModalTitle>Регистрация</S.ModalTitle>
+              <S.ModalFormLogin>
+                <S.ModalInput
+                  value={registerData.name}
+                  onChange={handleInputChange}
+                  type="text"
+                  name="name"
+                  placeholder="Имя"
+                />
+                <S.ModalInput
+                  value={registerData.login}
+                  onChange={handleInputChange}
+                  type="text"
+                  name="login"
+                  placeholder="Эл. почта"
+                />
+                <S.ModalInput
+                  value={registerData.password}
+                  onChange={handleInputChange}
+                  type="password"
+                  name="password"
+                  placeholder="Пароль"
+                />
+                <S.ModalButton onClick={handleRegister}>
+                  Зарегистрироваться
+                </S.ModalButton>
+                <S.ModalFormGroup>
+                  Уже есть аккаунт?
+                  <Link to={appRoutes.LOGIN}> Войдите здесь</Link>
+                </S.ModalFormGroup>
+              </S.ModalFormLogin>
+            </S.ModalBlock>
+          </S.Modal>
+        </S.ContainerSignup>
+      </S.Wrapper>
+    </ThemeProvider>
   );
 }

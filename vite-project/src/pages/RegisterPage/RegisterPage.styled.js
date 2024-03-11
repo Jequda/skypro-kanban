@@ -5,7 +5,6 @@ export const Wrapper = styled.div`
   height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
-  background-color: #EAEEF6;
 `
 export const ContainerSignup = styled.div`
   display: block;
@@ -26,12 +25,12 @@ export const Modal = styled.div`
 export const ModalBlock = styled.div`
   display: block;
   margin: 0 auto;
-  background-color: #FFFFFF;
+  background-color:${props => props.theme.body};
   max-width: 368px;
   width: 100%;
   padding: 50px 60px;
   border-radius: 10px;
-  border: 0.7px solid #D4DBE5;
+  border: 0.7px solid ${props => props.theme.bd};
   box-shadow: 0px 4px 67px -12px rgba(0, 0, 0, 0.13);
 `
 export const ModalTitle = styled.div`
@@ -60,6 +59,8 @@ export const ModalInput = styled.input`
   border: 0.7px solid rgba(148, 166, 190, 0.4);
   outline: none;
   padding: 10px 8px;
+  background-color: ${props => props.theme.body};
+  color: ${props => props.theme.text};
 
   &::-moz-placeholder {
     font-family: "Roboto", sans-serif;

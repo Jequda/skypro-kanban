@@ -26,7 +26,7 @@ export const Container = styled.div`
 export const Block = styled.div`
   display: block;
   margin: 0 auto;
-  background-color: #ffffff;
+  background-color: ${props => props.theme.body};
   max-width: 630px;
   width: 100%;
   padding: 40px 30px 38px;
@@ -43,7 +43,7 @@ export const TopBlock = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 18px;
-  color: #000;
+  color: ${props => props.theme.text};
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
@@ -72,7 +72,7 @@ export const Status = styled.div`
   margin-bottom: 11px;
 `
 export const Subtitle = styled.div`
-  color: #000;
+  color: ${props => props.theme.text};
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
@@ -115,26 +115,28 @@ export const FormArea = styled.textarea`
   width: 100%;
   outline: none;
   padding: 14px;
-  background: #eaeef6;
+  background-color: ${props => props.theme.body};
   border: 0.7px solid rgba(148, 166, 190, 0.4);
   border-radius: 8px;
   font-size: 14px;
   line-height: 1;
   letter-spacing: -0.14px;
   height: 200px;
+  color: ${props => props.theme.text};
+  resize: none;
 
   &::-moz-placeholder {
     font-weight: 400;
     font-size: 14px;
     line-height: 1px;
-    color: #94a6be;
+    color: ${props => props.theme.text};
     letter-spacing: -0.14px;
   }
   &::placeholder {
     font-weight: 400;
     font-size: 14px;
     line-height: 1px;
-    color: #94a6be;
+    color: ${props => props.theme.text};
     letter-spacing: -0.14px;
   }
 `
@@ -157,10 +159,10 @@ export const ButtonEdit = styled.button`
   margin-bottom: 10px;
   padding: 0 14px;
   border-radius: 4px;
-  border: 0.7px solid var(--palette-navy-60, #565eef);
+  border: 0.7px solid ${props => props.theme.button};
   outline: none;
   background: transparent;
-  color: #565eef;
+  color: ${props => props.theme.button};
 
   &:hover {
     background-color: #33399b;
@@ -218,6 +220,7 @@ export const TitleInput = styled.input`
   font-size: 14px;
   line-height: 1;
   letter-spacing: -0.14px;
+  color: ${props => props.theme.text};
 
   &::-moz-placeholder {
     font-weight: 400;

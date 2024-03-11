@@ -1,14 +1,23 @@
 import { createContext, useEffect, useState } from "react";
 import { darkTheme, lightTheme } from "../lib/themes";
 
+function getThemeFromLocalStorage() {
+  try {
+    return localStorage.getItem("theme");
+  } catch (error) {
+    console.log(error);
+    return "light";
+  }
+}
+
 export const ThemesContext = createContext();
 export const ThemesProvider = ({ children }) => {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(getThemeFromLocalStorage());
   const [mountedComponent, setMountedComponent] = useState(false);
   const themeMode = theme === "light" ? lightTheme : darkTheme;
 
   const setMode = (mode) => {
-    localStorage.setItem("theme", mode);
+    localStorage.setItem("light", mode);
     setTheme(mode);
     localStorage.setItem("mountedComponent", false);
   };
@@ -19,10 +28,12 @@ export const ThemesProvider = ({ children }) => {
 
   useEffect(() => {
     const localTheme = localStorage.getItem("theme");
+    console.log(localTheme);
     localTheme && setTheme(localTheme);
     const localChecked = localStorage.getItem("mountedComponent");
     localChecked && setMountedComponent(localChecked);
   }, []);
+
   return (
     <ThemesContext.Provider
       value={{
@@ -38,43 +49,3 @@ export const ThemesProvider = ({ children }) => {
     </ThemesContext.Provider>
   );
 };
-
-//
-//
-// import { ReactNode, createContext, useContext, useState } from "react";
-
-// interface IThemeContext {
-//   isDark: boolean;
-//   toggleTheme: () => void;
-// }
-
-// export const ThemeContext =
-//   (createContext < IThemeContext) | (undefined > undefined);
-
-// export const useTheme = () => {
-//   const context = useContext(ThemeContext);
-
-//   if (!context) {
-//     throw new Error("context error");
-//   }
-
-//   return context;
-// };
-
-// interface ThemeProviderProps {
-//   children: ReactNode;
-// }
-
-// export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-//   const [isDark, setIsDark] = useState(false);
-
-//   const toggleTheme = () => {
-//     setIsDark((prev) => !prev);
-//   };
-
-//   return (
-//     <ThemeContext.Provider value={{ isDark, toggleTheme }}>
-//       {children}
-//     </ThemeContext.Provider>
-//   );
-// };
