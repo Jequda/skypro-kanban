@@ -4,13 +4,12 @@ import { darkTheme, lightTheme } from "../lib/themes";
 export const ThemesContext = createContext();
 export const ThemesProvider = ({ children }) => {
   const [theme, setTheme] = useState("light");
-  const [mountedComponent, setMountedComponent] = useState(false);
   const themeMode = theme === "light" ? lightTheme : darkTheme;
+  const mountedComponent = theme === "light" ? true : false;
 
   const setMode = (mode) => {
     localStorage.setItem("light", mode);
     setTheme(mode);
-    localStorage.setItem("mountedComponent", false);
   };
 
   const themeToggler = () => {
@@ -20,8 +19,6 @@ export const ThemesProvider = ({ children }) => {
   useEffect(() => {
     const localTheme = localStorage.getItem("light");
     localTheme && setTheme(localTheme);
-    const localChecked = localStorage.getItem("mountedComponent");
-    localChecked && setMountedComponent(localChecked);
   }, []);
 
   return (
@@ -30,7 +27,6 @@ export const ThemesProvider = ({ children }) => {
         theme,
         themeToggler,
         mountedComponent,
-        setMountedComponent,
         themeMode,
       }}
     >
