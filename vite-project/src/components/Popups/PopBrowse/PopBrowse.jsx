@@ -20,12 +20,13 @@ function PopBrowse() {
   const [isEdit, setIsEdit] = useState(false);
   const navigate = useNavigate();
   const { user } = useUser();
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(card?.date);
   const [editTask, setEditTask] = useState({
     title: card?.title,
     description: card?.description,
     topic: card?.topic,
     status: card?.status,
+    date: card?.date,
   });
 
   const handleEditCard = async (e) => {
@@ -52,7 +53,6 @@ function PopBrowse() {
       ...editTask, // Копируем текущие данные из состояния
       [name]: value, // Обновляем нужное поле
     });
-    console.log(editTask);
   };
 
   const handleFormSubmit = async (e) => {
@@ -69,6 +69,7 @@ function PopBrowse() {
       topic: taskData.topic,
       status: taskData.status,
       token: user.token,
+      date: taskData.date,
     })
       .then((data) => {
         setCards(data.tasks);
@@ -219,7 +220,7 @@ function PopBrowse() {
                         <S.FormArea readOnly={true} value={card?.description} />
                       </S.FormBlock>
                     </S.Form>
-                    <Calendar selectedDate={card?.date} />
+                    <Calendar selectedDate={new Date(card?.date)} />
                   </S.Wrap>
                   <S.ButtonBrowse>
                     <S.ButtonGroup>

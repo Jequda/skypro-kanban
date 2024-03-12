@@ -11,17 +11,19 @@ import NewTaskPage from "./pages/NewTaskPage/NewTaskPage";
 
 export default function App() {
   return (
-    <Routes>
-      <Route element={<PrivateRoute />}>
-        <Route path={appRoutes.MAIN} element={<MainPage />}>
-          <Route path={appRoutes.TASK} element={<TaskPage />} />
-          <Route path={appRoutes.EXIT} element={<ExitPage />} />
-          <Route path={appRoutes.NEWTASK} element={<NewTaskPage />} />
+    <>
+      <Routes>
+        <Route element={<PrivateRoute />}>
+          <Route path={appRoutes.MAIN} element={<MainPage />}>
+            <Route path={appRoutes.TASK} element={<TaskPage />} />
+            <Route path={appRoutes.EXIT} element={<ExitPage />} />
+            <Route path={appRoutes.NEWTASK} element={<NewTaskPage />} />
+          </Route>
         </Route>
-      </Route>
-      <Route path={appRoutes.LOGIN} element={<Login />} />
-      <Route path={appRoutes.REGISTER} element={<Register />} />
-      <Route path={appRoutes.NOT_FOUND} element={<NotFound />} />
-    </Routes>
+        <Route path={appRoutes.LOGIN} element={<Login />} />
+        <Route path={appRoutes.REGISTER} element={<Register />} />
+        <Route path={appRoutes.NOT_FOUND} element={<NotFound />} />
+      </Routes>
+    </>
   );
 }

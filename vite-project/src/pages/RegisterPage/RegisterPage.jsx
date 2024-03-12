@@ -12,6 +12,9 @@ export default function Register() {
   const { login } = useUser();
   const navigate = useNavigate();
   const { themeMode } = useThemes();
+  const [alert, setAlert] = useState(null);
+  const [isButtonLoading, setIsButtonLoading] = useState(false);
+  const [isIncorrectData, setIsIncorrectData] = useState(false);
 
   const [registerData, setRegisterData] = useState({
     name: "",
@@ -30,14 +33,21 @@ export default function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setIsButtonLoading(true);
     await SignUp(registerData)
       .then((data) => {
         login(data.user);
         navigate(appRoutes.MAIN);
       })
       .catch((error) => {
-        alert(error);
+        setAlert(error.message);
+        setIsIncorrectData(true);
       });
+  };
+
+  const cancelError = () => {
+    setIsButtonLoading(false);
+    setIsIncorrectData(false);
   };
 
   return (
@@ -50,6 +60,8 @@ export default function Register() {
               <S.ModalTitle>Регистрация</S.ModalTitle>
               <S.ModalFormLogin>
                 <S.ModalInput
+                  onKeyDown={cancelError}
+                  $isButtonLoading={isIncorrectData}
                   value={registerData.name}
                   onChange={handleInputChange}
                   type="text"
@@ -57,6 +69,8 @@ export default function Register() {
                   placeholder="Имя"
                 />
                 <S.ModalInput
+                  onKeyDown={cancelError}
+                  $isButtonLoading={isIncorrectData}
                   value={registerData.login}
                   onChange={handleInputChange}
                   type="text"
@@ -70,7 +84,12 @@ export default function Register() {
                   name="password"
                   placeholder="Пароль"
                 />
-                <S.ModalButton onClick={handleRegister}>
+                <S.AlertMessage>{alert}</S.AlertMessage>
+                <S.ModalButton
+                  disabled={isButtonLoading}
+                  $isButtonLoading={isButtonLoading}
+                  onClick={handleRegister}
+                >
                   Зарегистрироваться
                 </S.ModalButton>
                 <S.ModalFormGroup>

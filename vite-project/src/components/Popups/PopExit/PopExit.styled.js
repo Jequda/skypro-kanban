@@ -41,7 +41,7 @@ export const Title = styled.div`
   letter-spacing: -0.4px;
   margin-bottom: 20px;
 `
-export const Form = styled.form`
+export const Form = styled.div`
   width: 100%;
   display: flex;
   align-items: center;

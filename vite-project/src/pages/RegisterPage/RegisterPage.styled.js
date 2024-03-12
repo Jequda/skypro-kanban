@@ -56,11 +56,12 @@ export const ModalInput = styled.input`
   width: 100%;
   min-width: 100%;
   border-radius: 8px;
-  border: 0.7px solid rgba(148, 166, 190, 0.4);
   outline: none;
   padding: 10px 8px;
   background-color: ${props => props.theme.body};
   color: ${props => props.theme.text};
+  border: 0.7px solid ${({ $isButtonLoading }) =>
+    $isButtonLoading ? "#F84D4D" : "rgba(148, 166, 190, 0.4)"};
 
   &::-moz-placeholder {
     font-family: "Roboto", sans-serif;
@@ -82,7 +83,8 @@ export const ModalInput = styled.input`
 export const ModalButton = styled.button`
   width: 100%;
   height: 30px;
-  background-color: #565EEF;
+  background-color: ${({ $isButtonLoading }) =>
+    $isButtonLoading ? "#94A6BE" : "#565EEF"};
   border-radius: 4px;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -113,4 +115,12 @@ export const ModalFormGroup = styled.div`
     letter-spacing: -0.14px;
     text-decoration: underline;
   }
+`
+export const AlertMessage = styled.div`
+ color: #F84D4D;
+ font-size: 14px;
+  font-weight: 400;
+  line-height: 150%;
+  margin-top: 7px;
+  text-align: center;
 `

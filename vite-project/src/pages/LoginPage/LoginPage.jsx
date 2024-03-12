@@ -12,6 +12,9 @@ export default function Login() {
   const { login } = useUser();
   const navigate = useNavigate();
   const { themeMode } = useThemes();
+  const [alert, setAlert] = useState(null);
+  const [isButtonLoading, setIsButtonLoading] = useState(false);
+  const [isIncorrectData, setIsIncorrectData] = useState(false);
 
   const [loginData, setLoginData] = useState({ login: "", password: "" });
 
@@ -26,14 +29,20 @@ export default function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setIsButtonLoading(true);
     await SignIn(loginData)
       .then((data) => {
         login(data.user);
         navigate(appRoutes.MAIN);
       })
       .catch((error) => {
-        alert(error);
+        setAlert(error.message);
+        setIsIncorrectData(true);
       });
+  };
+  const cancelError = () => {
+    setIsButtonLoading(false);
+    setIsIncorrectData(false);
   };
 
   return (
@@ -46,6 +55,8 @@ export default function Login() {
               <S.ModalTitle>Вход</S.ModalTitle>
               <S.ModalFormLogin>
                 <S.ModalInput
+                  onKeyDown={cancelError}
+                  $isButtonLoading={isIncorrectData}
                   value={loginData.login}
                   onChange={handleInputChange}
                   type="text"
@@ -53,13 +64,22 @@ export default function Login() {
                   placeholder="Эл. почта"
                 />
                 <S.ModalInput
+                  onKeyDown={cancelError}
+                  $isButtonLoading={isIncorrectData}
                   value={loginData.password}
                   onChange={handleInputChange}
                   type="password"
                   name="password"
                   placeholder="Пароль"
                 />
-                <S.ModalButton onClick={handleLogin}>Войти</S.ModalButton>
+                <S.AlertMessage>{alert}</S.AlertMessage>
+                <S.ModalButton
+                  disabled={isButtonLoading}
+                  $isButtonLoading={isButtonLoading}
+                  onClick={handleLogin}
+                >
+                  Войти
+                </S.ModalButton>
                 <S.ModalFormGroup>
                   Нужно зарегистрироваться?
                   <Link to={appRoutes.REGISTER}>Регистрируйтесь здесь</Link>

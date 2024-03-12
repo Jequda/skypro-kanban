@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
@@ -9,14 +9,14 @@ import { ThemesProvider } from "./contexts/theme.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    <React.StrictMode>
-      <ThemesProvider>
-        <UserProvider>
-          <TaskProvider>
-            <App />
-          </TaskProvider>
-        </UserProvider>
-      </ThemesProvider>
-    </React.StrictMode>
+    {/* <React.StrictMode> */}
+    <ThemesProvider>
+      <UserProvider>
+        <TaskProvider>
+          <App />
+        </TaskProvider>
+      </UserProvider>
+    </ThemesProvider>
+    {/* </React.StrictMode> */}
   </BrowserRouter>
 );

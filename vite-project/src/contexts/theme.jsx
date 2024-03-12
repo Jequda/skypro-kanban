@@ -23,6 +23,7 @@ export const ThemesProvider = ({ children }) => {
 
   return (
     <ThemesContext.Provider
+      theme={themeMode}
       value={{
         theme,
         themeToggler,
@@ -30,6 +31,7 @@ export const ThemesProvider = ({ children }) => {
         themeMode,
       }}
     >
+      {" "}
       {children}
     </ThemesContext.Provider>
   );

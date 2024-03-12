@@ -36,6 +36,7 @@ function PopNewCard() {
       description: taskData.description,
       topic: taskData.topic,
       status: taskData.status,
+      date: taskData.date,
       token: user.token,
     })
       .then((data) => {

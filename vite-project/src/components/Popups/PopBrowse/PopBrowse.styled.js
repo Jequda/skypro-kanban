@@ -22,6 +22,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.4);
+  position: fixed;
 `
 export const Block = styled.div`
   display: block;

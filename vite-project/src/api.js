@@ -121,7 +121,7 @@ export async function SignIn({ login, password }) {
     });
 
     if (!response.ok) {
-        throw new Error("Неверный логин или пароль");
+        throw new Error("Введенные вами данные не распознаны. Проверьте свой логин и пароль и повторите попытку входа.");
     }
 
     return response.json();
