@@ -5,6 +5,7 @@ export const lightTheme = {
     bg: "#eaeef6",
     button: "#565eef",
     bd: "#D4DBE5",
+    hover: "#33399b"
     // Другие стили светлой темы
 };
 
@@ -15,5 +16,6 @@ export const darkTheme = {
     bg: "#151419",
     button: "#ffffff",
     bd: "#4E5566",
+    hover: "#565EEF"
     // Другие стили темной темы
 };

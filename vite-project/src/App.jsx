@@ -7,7 +7,6 @@ import MainPage from "./pages/MainPage/MainPage";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import TaskPage from "./pages/TaskPage/TaskPage";
 import ExitPage from "./pages/ExitPage/ExitPage";
-import "./App.css";
 import NewTaskPage from "./pages/NewTaskPage/NewTaskPage";
 
 export default function App() {

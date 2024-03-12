@@ -31,7 +31,7 @@ export const Block = styled.div`
   width: 100%;
   padding: 40px 30px 38px;
   border-radius: 10px;
-  border: 0.7px solid #d4dbe5;
+  border: 0.7px solid ${props => props.theme.bd};
   position: relative;
 `
 export const Content = styled.div`
@@ -154,7 +154,6 @@ export const ButtonGroup = styled.div`
   }
 `
 export const ButtonEdit = styled.button`
-  max-width: 170px;
   height: 30px;
   margin-bottom: 10px;
   padding: 0 14px;

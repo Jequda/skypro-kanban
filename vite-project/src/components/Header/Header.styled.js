@@ -1,4 +1,4 @@
-import { styled, css } from "styled-components";
+import { styled } from "styled-components";
 
 export const StyledHeader = styled.header`
     width: 100%;
@@ -32,18 +32,6 @@ export const HeaderNav = styled.nav`
   align-items: center;
   justify-content: center;
 `;
-
-export const HoverEffects = {
-  hover03: css`
-    &:hover {
-    background-color: #33399b;
-    color: #ffffff;
-    }
-    &:hover a {
-    color: #ffffff;
-    }
-  `,
-}
 
 export const ButtonNewMain = styled.button`
   width: 178px;
@@ -82,19 +70,19 @@ export const HeaderUser = styled.div`
   width: 6px;
   height: 6px;
   border-radius: 1px;
-  border-left: 1.9px solid ${props => props.theme.button};;
-  border-bottom: 1.9px solid ${props => props.theme.button};;
+  border-left: 1.9px solid ${props => props.theme.button};
+  border-bottom: 1.9px solid ${props => props.theme.button};
   transform: rotate(-45deg);
   margin: -6px 0 0 5px;
   padding: 0;
   }
 
   &:hover {
-  color: #33399b;
+  color: ${props => props.theme.hover};
   }
   &:hover::after {
-  border-left-color: #33399b;
-  border-bottom-color: #33399b;
+  border-left-color: ${props => props.theme.hover};
+  border-bottom-color: ${props => props.theme.hover};
   }
 `;
 
