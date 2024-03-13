@@ -41,7 +41,6 @@ function PopNewCard() {
     })
       .then((data) => {
         setCards(data.tasks);
-        console.log(data.tasks);
         navigate(appRoutes.MAIN);
       })
       .catch((error) => {

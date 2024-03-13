@@ -169,7 +169,7 @@ export const PopUserSetTheme = styled.div`
   width: 11px;
   height: 11px;
   border-radius: 50%;
-  background-color: #94a6be;
+  background-color: ${props => props.theme.checkbox};
   transition: 0.5s;
   }
 
