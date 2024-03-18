@@ -9,7 +9,6 @@ import { useTasks } from "../../hooks/useCards";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "../../styled/Common/Global.styled";
 import { useThemes } from "../../hooks/useThemes";
-import { ThemesProvider } from "../../contexts/theme";
 
 const statusList = [
   "Без статуса",
@@ -50,6 +49,7 @@ export default function MainPage() {
               {statusList.map((status) => (
                 <Column
                   title={status}
+                  droppableId={status}
                   key={status}
                   cardList={cards.filter((card) => card.status === status)}
                 />
