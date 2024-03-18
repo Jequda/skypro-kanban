@@ -14,6 +14,7 @@ export default function Calendar({ selectedDate, setSelectedDate }) {
       selected={selectedDate}
       onSelect={setSelectedDate}
       footer={footer}
+      locale={ru}
     />
   );
 }

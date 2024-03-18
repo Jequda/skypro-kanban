@@ -30,13 +30,13 @@ export const CardsItem = styled.div`
 export const CardsCard = styled.div`
   width: 220px;
   height: 130px;
-  background-color: #ffffff;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: stretch;
   padding: 15px 13px 19px;
+  background-color:${props => props.theme.body};
 `;
 
 export const CardGroup = styled.div`
@@ -76,7 +76,7 @@ export const CardTitle = styled.h3`
   font-size: 14px;
   font-weight: 500;
   line-height: 18px;
-  color: #000000;
+  color:${props => props.theme.text};
   margin-bottom: 10px;
 `;
 
